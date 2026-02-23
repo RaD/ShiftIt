@@ -44,7 +44,7 @@
 		27160C6D16C939FF002DA475 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		27160C6F16C939FF002DA475 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27A14D7F1269CCA200E68263 /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		27160C7016C939FF002DA475 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2708222117FCF9400C0A04C /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		2717BDAC1498B7FD0012EF87 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2714C0B21487F9BC00CC951D /* SenTestingKit.framework */; };
+		2717BDAC1498B7FD0012EF87 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2714C0B21487F9BC00CC951D /* XCTest.framework */; };
 		2717BE18149933530012EF87 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 270DACA814098AE30080DFBD /* GTMLogger.m */; };
 		2717BE1F149933840012EF87 /* SIAdjacentRectangles.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DC61EF1127C862000E1A5F /* SIAdjacentRectangles.m */; };
 		2717BE29149933E70012EF87 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717BE28149933E70012EF87 /* Carbon.framework */; };
@@ -52,7 +52,7 @@
 		2717BE39149935EC0012EF87 /* FMTNSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 2717BE36149935EB0012EF87 /* FMTNSArray+Functional.m */; };
 		2717BE3A149935EC0012EF87 /* FMTNSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 2717BE36149935EB0012EF87 /* FMTNSArray+Functional.m */; };
 		2717BE3B149935EC0012EF87 /* FMTNSError+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 2717BE38149935EC0012EF87 /* FMTNSError+Extras.m */; };
-		2717BEAC14994C120012EF87 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2714C0B21487F9BC00CC951D /* SenTestingKit.framework */; };
+		2717BEAC14994C120012EF87 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2714C0B21487F9BC00CC951D /* XCTest.framework */; };
 		2717BEAE14994C120012EF87 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717BEAD14994C120012EF87 /* Cocoa.framework */; };
 		2717BEBA14994C120012EF87 /* FMTGeometryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2717BEB914994C120012EF87 /* FMTGeometryTests.m */; };
 		2717BEBF14994CAE0012EF87 /* FMTGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DC61EF1127C862000E1A67 /* FMTGeometry.m */; };
@@ -161,7 +161,7 @@
 		270DACA714098AE30080DFBD /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMLogger.h; path = GTM/GTMLogger.h; sourceTree = "<group>"; };
 		270DACA814098AE30080DFBD /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMLogger.m; path = GTM/GTMLogger.m; sourceTree = "<group>"; };
 		270DACAA14098B250080DFBD /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = GTM/GTMDefines.h; sourceTree = "<group>"; };
-		2714C0B21487F9BC00CC951D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		2714C0B21487F9BC00CC951D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		27160C7416C939FF002DA475 /* ShiftIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2717BDAB1498B7FD0012EF87 /* ShiftIt Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ShiftIt Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2717BE28149933E70012EF87 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -267,7 +267,7 @@
 			files = (
 				2717BE2B149933EE0012EF87 /* Cocoa.framework in Frameworks */,
 				2717BE29149933E70012EF87 /* Carbon.framework in Frameworks */,
-				2717BDAC1498B7FD0012EF87 /* SenTestingKit.framework in Frameworks */,
+				2717BDAC1498B7FD0012EF87 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2717BEAC14994C120012EF87 /* SenTestingKit.framework in Frameworks */,
+				2717BEAC14994C120012EF87 /* XCTest.framework in Frameworks */,
 				2717BEAE14994C120012EF87 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,7 +528,7 @@
 			children = (
 				279AF8181943675F0048FE5F /* ScriptingBridge.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				2714C0B21487F9BC00CC951D /* SenTestingKit.framework */,
+				2714C0B21487F9BC00CC951D /* XCTest.framework */,
 				2717BEAD14994C120012EF87 /* Cocoa.framework */,
 				27B4F46A192CFB2B00D35063 /* CoreFoundation.framework */,
 				27B4F479192CFB4600D35063 /* Foundation.framework */,
