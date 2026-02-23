@@ -55,6 +55,13 @@ NSString *const kHotKeysTabViewItemIdentifier = @"hotKeys";
     return self;
 }
 
+- (void)dealloc {
+    [selectedTabIdentifier_ release];
+    [debugLoggingFile_ release];
+
+    [super dealloc];
+}
+
 - (BOOL)acceptsFirstResponder {
     return YES;
 }
@@ -243,7 +250,7 @@ static NSString *hotkeyIdentifiers[] = {
     ShiftItAction *action = [allShiftActions objectForKey:identifier];
     FMTAssertNotNil(action);
     if (tableColumn == hotkeyLabelColumn_) {
-        NSTextField* text = [[NSTextField alloc] initWithFrame:tableView.frame];
+        NSTextField* text = [[[NSTextField alloc] initWithFrame:tableView.frame] autorelease];
         text.alignment = NSRightTextAlignment;
         text.drawsBackground = NO;
         text.stringValue = action.label;
@@ -252,7 +259,7 @@ static NSString *hotkeyIdentifiers[] = {
         return text;
     }
     if (tableColumn == hotkeyColumn_) {
-        SRRecorderControl* recorder = [[SRRecorderControl alloc] initWithFrame:tableView.frame];
+        SRRecorderControl* recorder = [[[SRRecorderControl alloc] initWithFrame:tableView.frame] autorelease];
         recorder.delegate = self;
         recorder.identifier = identifier;
         [self updateRecorderCombo:recorder forIdentifier:identifier];
