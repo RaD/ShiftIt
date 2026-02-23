@@ -102,6 +102,7 @@ static NSMutableDictionary *allHotKeys;
 static inline OSStatus hotKeyHandler(EventHandlerCallRef inHandlerCallRef,EventRef inEvent,
 					   void *userData)
 {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	EventHotKeyID hotKeyID;
 	GetEventParameter(inEvent,kEventParamDirectObject,typeEventHotKeyID,NULL,
 					  sizeof(hotKeyID),NULL,&hotKeyID);
@@ -111,9 +112,12 @@ static inline OSStatus hotKeyHandler(EventHandlerCallRef inHandlerCallRef,EventR
 	TWHotKeyRegistartion* hotKeyReg = [allHotKeys objectForKey:id];
 	
 	if (hotKeyReg != nil) {
-		objc_msgSend([hotKeyReg provider], [hotKeyReg handler], [hotKeyReg userData]);
+		void (*sendAction)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
+		sendAction([hotKeyReg provider], [hotKeyReg handler], [hotKeyReg userData]);
+		[pool release];
 		return noErr;
 	} else {
+		[pool release];
 		return eventNotHandledErr;
 	}
 }
@@ -153,15 +157,21 @@ SINGLETON_BOILERPLATE(FMTHotKeyManager, sharedHotKeyManager);
 	
 	// search for the registration
 	TWHotKeyRegistartion *hotKeyReg = nil;
-	for (TWHotKeyRegistartion *e in [allHotKeys allValues]) {
+	NSNumber *hotKeyId = nil;
+	for (NSNumber *key in allHotKeys) {
+		TWHotKeyRegistartion *e = [allHotKeys objectForKey:key];
 		if ([hotKey isEqualTo:[e hotKey]]) {
 			hotKeyReg = e;
+			hotKeyId = key;
 			break;
 		}
 	}
 	
 	if (hotKeyReg) {
 		UnregisterEventHotKey([hotKeyReg ref]);
+		if (hotKeyId) {
+			[allHotKeys removeObjectForKey:hotKeyId];
+		}
 	} else {
 		// no registration found
 		GTMLoggerDebug(@"Unable to unregister hotKey: %@ - it has not been registered by this HotKeyManager", hotKey);
@@ -184,11 +194,11 @@ SINGLETON_BOILERPLATE(FMTHotKeyManager, sharedHotKeyManager);
 	hotKeyID.id = hotKeyIdSequence_++;
 	
 	EventHotKeyRef hotKeyRef;
-	RegisterEventHotKey([hotKey keyCode], [hotKey carbonModifiers], hotKeyID,
-						GetApplicationEventTarget(), 0, &hotKeyRef);
+	OSStatus status = RegisterEventHotKey([hotKey keyCode], [hotKey carbonModifiers], hotKeyID,
+										  GetApplicationEventTarget(), 0, &hotKeyRef);
 	
-	if (!hotKeyRef) {
-		GTMLoggerError(@"Unable to register hotKey: %@", hotKey);
+	if (status != noErr || !hotKeyRef) {
+		GTMLoggerError(@"Unable to register hotKey: %@ (status=%ld)", hotKey, (long)status);
 		return;
 	}
 	
